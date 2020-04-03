@@ -36,6 +36,9 @@ const engineerQuestion = [
 // Promise.all([initPrompt(), rolePrompts(role)]);
 
 function initPrompt() {
+  // await inquirer.prompt(managerQuestion).then(function(res) {
+  //   console.log(res.number);
+  // });
   inquirer.prompt(initQuestions).then(function(role) {
     rolePrompts(role);
   });
@@ -43,29 +46,34 @@ function initPrompt() {
 
 function rolePrompts(role) {
   if (role.role === "Intern") {
-    inquirer.prompt(internQuestion);
+    inquirer.prompt(internQuestion).then(function(response) {
+      roleCondition(response);
+    });
   }
   if (role.role === "Engineer") {
-    inquirer.prompt(engineerQuestion);
+    inquirer.prompt(engineerQuestion).then(function(response) {
+      roleCondition(response);
+    });
   }
   if (role.role === "Manager") {
-    inquirer.prompt(managerQuestion);
+    inquirer.prompt(managerQuestion).then(function(response) {
+      roleCondition(response);
+    });
   }
 }
 
-function roleCondition(res, roleAns) {
-  if (res.role === "Intern") {
-    const school = roleAns.school;
-    console.log(school);
-  }
-  if (res.role === "Manager") {
-    const officeNumber = roleAns.number;
-    console.log(officeNumber);
-  }
-  if (res.role === "Engineer") {
-    const github = roleAns.github;
-    console.log(github);
-  }
+function roleCondition(response) {
+  // if (response === "school") {
+  //   console.log("school is: " + response);
+  // }
+  // if (response === "number") {
+  //   console.log("number is: " + response);
+  // }
+  // if (response === "github") {
+  //   console.log("github name is: " + github);
+  // } else {
+  console.log(response);
+  // }
 }
 
 initPrompt();
