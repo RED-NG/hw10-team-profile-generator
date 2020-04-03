@@ -47,33 +47,45 @@ function initPrompt() {
 function rolePrompts(role) {
   if (role.role === "Intern") {
     inquirer.prompt(internQuestion).then(function(response) {
-      roleCondition(response);
+      internSchool(response);
     });
   }
   if (role.role === "Engineer") {
     inquirer.prompt(engineerQuestion).then(function(response) {
-      roleCondition(response);
+      engineerGithub(response);
     });
   }
   if (role.role === "Manager") {
     inquirer.prompt(managerQuestion).then(function(response) {
-      roleCondition(response);
+      managerNumber(response);
     });
   }
 }
 
-function roleCondition(response) {
-  // if (response === "school") {
-  //   console.log("school is: " + response);
-  // }
-  // if (response === "number") {
-  //   console.log("number is: " + response);
-  // }
-  // if (response === "github") {
-  //   console.log("github name is: " + github);
-  // } else {
-  console.log(response);
-  // }
+function internSchool(response) {
+  console.log("school: " + JSON.stringify(response.school));
 }
+
+function engineerGithub(response) {
+  console.log("github name is: " + JSON.stringify(response.github));
+}
+
+function managerNumber(response) {
+  console.log("office number is: " + JSON.stringify(response.number));
+}
+
+// function roleCondition(response) {
+//   // if (response === "school") {
+//   //   console.log("school is: " + response);
+//   // }
+//   // if (response === "number") {
+//   //   console.log("number is: " + response);
+//   // }
+//   // if (response === "github") {
+//   //   console.log("github name is: " + github);
+//   // } else {
+//   console.log(response);
+//   // }
+// }
 
 initPrompt();
