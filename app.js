@@ -1,5 +1,4 @@
 const inquirer = require("inquirer");
-const Employee = require("./lib/Employee");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
@@ -33,12 +32,7 @@ const engineerQuestion = [
   { type: "input", name: "github", message: "Enter your github name" }
 ];
 
-// Promise.all([initPrompt(), rolePrompts(role)]);
-
 function initPrompt() {
-  // await inquirer.prompt(managerQuestion).then(function(res) {
-  //   console.log(res.number);
-  // });
   inquirer.prompt(initQuestions).then(function(role) {
     rolePrompts(role);
   });
@@ -73,19 +67,5 @@ function engineerGithub(response) {
 function managerNumber(response) {
   console.log("office number is: " + JSON.stringify(response.number));
 }
-
-// function roleCondition(response) {
-//   // if (response === "school") {
-//   //   console.log("school is: " + response);
-//   // }
-//   // if (response === "number") {
-//   //   console.log("number is: " + response);
-//   // }
-//   // if (response === "github") {
-//   //   console.log("github name is: " + github);
-//   // } else {
-//   console.log(response);
-//   // }
-// }
 
 initPrompt();
