@@ -3,6 +3,7 @@ const Employee = require("./lib/Employee");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 const Manager = require("./lib/Manager");
+const fs = require("fs");
 
 const initQuestions = [
   { type: "input", name: "name", message: "Enter your name" },
@@ -32,6 +33,8 @@ const engineerQuestion = [
   { type: "input", name: "github", message: "Enter your github name" }
 ];
 
+// Promise.all([initPrompt(), rolePrompts(role)]);
+
 function initPrompt() {
   inquirer.prompt(initQuestions).then(function(role) {
     rolePrompts(role);
@@ -47,6 +50,21 @@ function rolePrompts(role) {
   }
   if (role.role === "Manager") {
     inquirer.prompt(managerQuestion);
+  }
+}
+
+function roleCondition(res, roleAns) {
+  if (res.role === "Intern") {
+    const school = roleAns.school;
+    console.log(school);
+  }
+  if (res.role === "Manager") {
+    const officeNumber = roleAns.number;
+    console.log(officeNumber);
+  }
+  if (res.role === "Engineer") {
+    const github = roleAns.github;
+    console.log(github);
   }
 }
 
