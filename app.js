@@ -83,6 +83,8 @@ function rolePrompts(role) {
       console.log(team);
       if (response.add === "Yes") {
         initPrompt();
+      } else if (response.add === "No, exit application") {
+        teamPush();
       }
     });
   }
@@ -92,6 +94,8 @@ function rolePrompts(role) {
       console.log(team);
       if (response.add === "Yes") {
         initPrompt();
+      } else if (response.add === "No, exit application") {
+        teamPush();
       }
     });
   }
@@ -101,17 +105,14 @@ function rolePrompts(role) {
       console.log(team);
       if (response.add === "Yes") {
         initPrompt();
+      } else if (response.add === "No, exit application") {
+        teamPush(team);
       }
     });
   }
 }
 
 function createIntern(response) {
-  // console.log("Intern's school " + JSON.stringify(response.school));
-  // console.log("Intern's name " + JSON.stringify(response.name));
-  // console.log("Intern's id " + JSON.stringify(response.id));
-  // console.log("Intern's email: " + JSON.stringify(response.email));
-
   const intern = new Intern(
     response.name,
     response.id,
@@ -122,11 +123,6 @@ function createIntern(response) {
 }
 
 function createEngineer(response) {
-  // console.log("Engineer's github name is: " + JSON.stringify(response.github));
-  // console.log("Engineer's name " + JSON.stringify(response.name));
-  // console.log("Engineer's id " + JSON.stringify(response.id));
-  // console.log("Engineer's email: " + JSON.stringify(response.email));
-
   const engineer = new Engineer(
     response.name,
     response.id,
@@ -137,10 +133,6 @@ function createEngineer(response) {
 }
 
 function createManager(response) {
-  // console.log("Manager's office number is: " + JSON.stringify(response.number));
-  // console.log("Manager's name " + JSON.stringify(response.name));
-  // console.log("Manager's id " + JSON.stringify(response.id));
-  // console.log("Manager's email: " + JSON.stringify(response.email));
   const manager = new Manager(
     response.name,
     response.id,
@@ -148,6 +140,10 @@ function createManager(response) {
     response.number
   );
   team.push(manager);
+}
+
+function teamPush(team) {
+  console.log(team);
 }
 
 initPrompt();
