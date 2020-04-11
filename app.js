@@ -81,12 +81,18 @@ function rolePrompts(role) {
     inquirer.prompt(internQuestion).then(function (response) {
       createIntern(response);
       console.log(team);
+      if (response.add === "Yes") {
+        initPrompt();
+      }
     });
   }
   if (role.role === "Engineer") {
     inquirer.prompt(engineerQuestion).then(function (response) {
       createEngineer(response);
       console.log(team);
+      if (response.add === "Yes") {
+        initPrompt();
+      }
     });
   }
   if (role.role === "Manager") {
@@ -95,8 +101,6 @@ function rolePrompts(role) {
       console.log(team);
       if (response.add === "Yes") {
         initPrompt();
-      } else {
-        createManager(response);
       }
     });
   }
@@ -109,10 +113,10 @@ function createIntern(response) {
   // console.log("Intern's email: " + JSON.stringify(response.email));
 
   const intern = new Intern(
-    response.school,
     response.name,
     response.id,
-    response.email
+    response.email,
+    response.school
   );
   team.push(intern);
 }
@@ -124,10 +128,10 @@ function createEngineer(response) {
   // console.log("Engineer's email: " + JSON.stringify(response.email));
 
   const engineer = new Engineer(
-    response.github,
     response.name,
     response.id,
-    response.email
+    response.email,
+    response.github
   );
   team.push(engineer);
 }
@@ -138,10 +142,10 @@ function createManager(response) {
   // console.log("Manager's id " + JSON.stringify(response.id));
   // console.log("Manager's email: " + JSON.stringify(response.email));
   const manager = new Manager(
-    response.number,
     response.name,
     response.id,
-    response.email
+    response.email,
+    response.number
   );
   team.push(manager);
 }
