@@ -11,8 +11,8 @@ const initQuestion = [
     type: "list",
     name: "role",
     message: "Add another person to the team?",
-    choices: ["Intern", "Engineer", "Manager", "No, exit application"]
-  }
+    choices: ["Intern", "Engineer", "Manager", "No, exit application"],
+  },
 ];
 
 const internQuestion = [
@@ -21,19 +21,19 @@ const internQuestion = [
   {
     type: "input",
     name: "email",
-    message: "Enter the intern's email"
+    message: "Enter the intern's email",
   },
   {
     type: "input",
     name: "school",
-    message: "Enter the name of the intern's school"
+    message: "Enter the name of the intern's school",
   },
   {
     type: "list",
     name: "add",
     message: "Would you like to add another employee to your team?",
-    choices: ["Yes", "No, exit application"]
-  }
+    choices: ["Yes", "No, exit application"],
+  },
 ];
 
 const managerQuestion = [
@@ -42,15 +42,15 @@ const managerQuestion = [
   {
     type: "input",
     name: "email",
-    message: "Enter your email"
+    message: "Enter your email",
   },
   { type: "any", name: "number", message: "Enter the manager's office number" },
   {
     type: "list",
     name: "add",
     message: "Would you like to add another employee to your team?",
-    choices: ["Yes", "No, exit application"]
-  }
+    choices: ["Yes", "No, exit application"],
+  },
 ];
 
 const engineerQuestion = [
@@ -59,38 +59,38 @@ const engineerQuestion = [
   {
     type: "input",
     name: "email",
-    message: "Enter your email"
+    message: "Enter your email",
   },
   { type: "input", name: "github", message: "Enter your github name" },
   {
     type: "list",
     name: "add",
     message: "Would you like to add another employee to your team?",
-    choices: ["Yes", "No, exit application"]
-  }
+    choices: ["Yes", "No, exit application"],
+  },
 ];
 
 function initPrompt() {
-  inquirer.prompt(initQuestion).then(function(role) {
+  inquirer.prompt(initQuestion).then(function (role) {
     rolePrompts(role);
   });
 }
 
 function rolePrompts(role) {
   if (role.role === "Intern") {
-    inquirer.prompt(internQuestion).then(function(response) {
+    inquirer.prompt(internQuestion).then(function (response) {
       createIntern(response);
       console.log(team);
     });
   }
   if (role.role === "Engineer") {
-    inquirer.prompt(engineerQuestion).then(function(response) {
+    inquirer.prompt(engineerQuestion).then(function (response) {
       createEngineer(response);
       console.log(team);
     });
   }
   if (role.role === "Manager") {
-    inquirer.prompt(managerQuestion).then(function(response) {
+    inquirer.prompt(managerQuestion).then(function (response) {
       createManager(response);
       console.log(team);
       if (response.add === "Yes") {
@@ -123,7 +123,7 @@ function createEngineer(response) {
   // console.log("Engineer's id " + JSON.stringify(response.id));
   // console.log("Engineer's email: " + JSON.stringify(response.email));
 
-  const engineer = new engineer(
+  const engineer = new Engineer(
     response.github,
     response.name,
     response.id,
