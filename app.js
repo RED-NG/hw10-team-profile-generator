@@ -84,7 +84,7 @@ function rolePrompts(role) {
       if (response.add === "Yes") {
         initPrompt();
       } else if (response.add === "No, exit application") {
-        teamPush();
+        teamPush(team);
       }
     });
   }
@@ -95,7 +95,7 @@ function rolePrompts(role) {
       if (response.add === "Yes") {
         initPrompt();
       } else if (response.add === "No, exit application") {
-        teamPush();
+        teamPush(team);
       }
     });
   }
@@ -113,37 +113,81 @@ function rolePrompts(role) {
 }
 
 function createIntern(response) {
-  const intern = new Intern(
-    response.name,
-    response.id,
-    response.email,
-    response.school
-  );
-  team.push(intern);
+  // const intern = new Intern(
+  //   response.name,
+  //   response.id,
+  //   response.email,
+  //   response.school
+  // );
+
+  const internCard = `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${response.name}</h5>
+    <h5 class="card-title">${response.id}</h5>
+    <h5 class="card-title">${response.email}</h5>
+    <h5 class="card-title">${response.school}</h5>
+  </div>
+</div>`;
+  // team.push(intern);
+  team.push(internCard);
 }
 
 function createEngineer(response) {
-  const engineer = new Engineer(
-    response.name,
-    response.id,
-    response.email,
-    response.github
-  );
-  team.push(engineer);
+  // const engineer = new Engineer(
+  //   response.name,
+  //   response.id,
+  //   response.email,
+  //   response.github
+  // );
+  const engineerCard = `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${response.name}</h5>
+    <h5 class="card-title">${response.id}</h5>
+    <h5 class="card-title">${response.email}</h5>
+    <h5 class="card-title">${response.github}</h5>
+  </div>
+</div>`;
+  // team.push(engineer);
+  team.push(engineerCard);
 }
 
 function createManager(response) {
-  const manager = new Manager(
-    response.name,
-    response.id,
-    response.email,
-    response.number
-  );
-  team.push(manager);
+  // const manager = new Manager(
+  //   response.name,
+  //   response.id,
+  //   response.email,
+  //   response.number
+  // );
+  const managerCard = `<div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">${response.name}</h5>
+    <h5 class="card-title">${response.id}</h5>
+    <h5 class="card-title">${response.email}</h5>
+    <h5 class="card-title">${response.number}</h5>
+  </div>
+</div>`;
+  // team.push(manager);
+  team.push(managerCard);
 }
 
 function teamPush(team) {
   console.log(team);
+  fs.appendFileSync("./output/main.html", `${team}`);
 }
 
+function initializeHTML() {
+  fs.readFile("./template/template.html", function readTemplate(err, data) {
+    if (err) {
+      throw err;
+    } else {
+      fs.writeFile("./output/main.html", data, function (err) {
+        if (err) {
+          throw err;
+        }
+      });
+    }
+  });
+}
+
+initializeHTML();
 initPrompt();
